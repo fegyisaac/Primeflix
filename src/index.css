@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.container {
+    @apply max-w-[1200px] sm:w-full md:w-[768px] xmd:w-[920px] xl:w-[1200px] xl:px-0 m-auto;
+}
+
+.flex_btw {
+    @apply flex justify-between;
+}
+
+.flex_center {
+    @apply flex justify-center items-center;
+}
+
+/* .active {
+    border-bottom: 1px solid blue;
+    opacity: 1;
+    transition: 5s;
+} */
+/* body  {
+    background: #fff1e1;
+    background: #f8cb97;
+} */
