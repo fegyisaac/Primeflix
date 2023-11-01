@@ -30,19 +30,24 @@ const Header = () => {
   const [nav, setNav] = useState(false);
   return (
     <div className="bg-red-600 relative">
-      <div className="container py-4 px-4 text-[22px] flex_btw items-center gap-5">
+      <div className="container px-3 py-[10px] text-[22px] flex_btw items-center gap-7 xl:gap-1">
         <div
           onClick={() => setNav((prev) => !prev)}
           className="xmd:hidden text-white cursor-pointer"
         >
           {!nav ? <AiOutlineMenu /> : <AiOutlineClose />}
         </div>
-        <div className="xmd:hidden text-white bg-black absolute top-[100%] left-1 rounded-md">
+        <div className="xmd:hidden text-white bg-black absolute top-[100%] left-1 rounded-md z-40">
           {nav && (
             <div className="text-[16px] p-2">
               {navMenu.map((menu) => (
                 <NavLink key={menu.id} to={menu.to}>
-                  <li onClick={(e) => setNav(false)} className="cursor-pointer block py-[2px] hover:bg-gray-900 p-[3px] rounded-md">{menu.name}</li>
+                  <li
+                    onClick={(e) => setNav(false)}
+                    className="cursor-pointer block py-[2px] hover:bg-gray-900 p-[3px] rounded-md"
+                  >
+                    {menu.name}
+                  </li>
                 </NavLink>
               ))}
             </div>
@@ -55,7 +60,7 @@ const Header = () => {
             </div>
           </NavLink>
         </div>
-        <ul className="hidden text-[17px] text-white w-[600px] xmd:block">
+        <ul className="hidden text-[15px] text-white w-[600px] xmd:block">
           {navMenu.map((menu) => (
             <NavLink key={menu.id} to={menu.to}>
               <li className="cursor-pointer inline mr-4">{menu.name}</li>
@@ -63,7 +68,7 @@ const Header = () => {
           ))}
         </ul>
 
-        <Input />
+        <Input nav={nav} setNav={setNav} />
       </div>
     </div>
   );
