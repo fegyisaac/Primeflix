@@ -19,7 +19,7 @@ const DesktopInput = () => {
           type="text"
           // value={"desktop"}
           onChange={() => ""}
-          className="outline-none text-[16px] block w-full sm:w-[230px] xsm:w-[280px] xmd:w-[320px] lg:w-[360px] border-none rounded-3xl py-[7px] pl-[27px] pr-[73px] text-gray-900 placeholder:text-gray-600 leading-[9px]" 
+          className="outline-none text-[15px] block w-full sm:w-[230px] xsm:w-[280px] xmd:w-[320px] lg:w-[360px] border-none rounded-3xl py-[4px] pl-[28px] pr-[73px] text-gray-900 placeholder:text-gray-600 leading-[7px]" 
           placeholder="Search..."
         />
          <div className="absolute right-[3px] top-0 flex_center h-full py-[2px]">

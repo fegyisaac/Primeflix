@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from "react";
+
+import { useParams } from "react-router-dom";
 
 const VideoDetails = () => {
+  const { id } = useParams();
   return (
-    <div>VideoDetails</div>
-  )
-}
+    <div>
+      <div>{id}</div>
+    </div>
+  );
+};
 
-export default VideoDetails
+export default VideoDetails;

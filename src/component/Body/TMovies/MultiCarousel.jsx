@@ -45,13 +45,14 @@ const MultiCarousel = () => {
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/trending/movie/week?language=en-US&api_key=" + API_KEY;
 
-  const getMovies = async () => {
-    const res = await axios.get(url);
-    const data = res.data;
-    setMovies(data.results);
-  };
-
+  
   useEffect(() => {
+    const getMovies = async () => {
+      const res = await axios.get(url);
+      const data = res.data;
+      setMovies(data.results);
+      console.log("object");
+    };
     getMovies();
   }, []);
 

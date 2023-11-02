@@ -16,35 +16,38 @@ const InpMob = ({ setNav }) => {
       <button
         onClick={(e) => {
           setSearch((prev) => !prev);
-        //   setNav(false);
+          setNav(false);
         }}
-        className="text-white sm:hidden cursor-pointer flex_center"
+        className="text-white xsm:hidden cursor-pointer flex_center"
       >
         <AiOutlineSearch className="text-2xl" />
       </button>
       {search && (
-        <div className="absolute z-20 top-[115%] left-1/2 -translate-x-1/2 w-[92%] sm:w-full sm:relative shadow-sm sm:top-0 outline-none">
-          <div className="pointer-events-none absolute inset-y-0 left-0 items-center h-full flex_center pl-[12px] sm:pl-[7px]  sm:flex">
-            <span className="text-gray-500 text-[24px] sm:text-[20px]">
+        <div className="absolute z-20 top-[115%] left-1/2 -translate-x-1/2 w-[92%] shadow-sm outline-none">
+          <div className="pointer-events-none absolute inset-y-0 left-[8px] items-center h-full flex_center">
+            <span className="text-gray-500 text-[22px]">
               <AiOutlineSearch />
-              
             </span>
           </div>
           <input
             type="text"
-            value={"mobile"}
+            // value={"mobile"}
             onChange={() => ""}
-            className=" outline-none sm:block w-full sm:w-[230px] xmd:w-[300px] lg:w-[360px] border-none rounded-3xl py-1.5 pl-10 sm:pl-7 pr-1 text-gray-900 placeholder:text-gray-800 text-[17px] sm:text-sm leading-[9px] sm:leading-5"
+            className=" outline-none block w-full border-none rounded-3xl py-1 pl-8 pr-[77px] text-gray-900 placeholder:text-gray-800 text-[16px] leading-[25px]"
             placeholder="Search..."
           />
-          <div className="dropdown absolute right-1 top-0 sm:max-w-[90px] sm:flex sm:items-center h-full py-[3px]">
-            <div className="relative bg-black flex flex-col items-center w-[73px] sm:w-[66px] h-full rounded-3xl">
+          <div className="absolute right-[3px] top-0 w-[67px] h-full py-[3px]">
+            <div className="relative text-white bg-black flex flex-col items-center w-full h-full rounded-3xl">
               <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="text-white text-[11px] flex_btw items-center h-full w-full px-[8px] sm:px-[6px]"
+                className="text-[11px] flex_btw items-center h-full w-full px-[6px]"
               >
                 <p>{selected}</p>
-                {!isOpen ? <BsFillCaretDownFill /> : <BsFillCaretUpFill />}
+                {!isOpen ? (
+                  <BsFillCaretDownFill className="text-[9px]" />
+                ) : (
+                  <BsFillCaretUpFill className="text-[9px]" />
+                )}
               </button>
               <div>
                 {isOpen && (
@@ -56,7 +59,7 @@ const InpMob = ({ setNav }) => {
                           setSelected(option);
                           setIsOpen(false);
                         }}
-                        className="hover:bg-green-700 py-[1px] px-[3px] rounded-sm duration-200 cursor-pointer"
+                        className="hover:bg-green-700 py-[1px] px-[3px] rounded-sm duration-[300ms] cursor-pointer"
                       >
                         {option}
                       </p>

@@ -45,14 +45,16 @@ const MultiCarousel = () => {
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/movie/top_rated?language=en-US&api_key=" + API_KEY;
 
-  const getTopRated = async () => {
-    const res = await axios.get(url);
-    const data = res.data;
-    setTopRated(data.results);
-  };
-
+  
   useEffect(() => {
+    const getTopRated = async () => {
+      const res = await axios.get(url);
+      const data = res.data;
+      setTopRated(data.results);
+      console.log("vvvvv");
+    };
     getTopRated();
+    
   }, []);
 
   // /movie/top_rated?language=en-US&

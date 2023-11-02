@@ -1,5 +1,6 @@
 import apiConfig from "../../api/apiConfig";
 import star from "../../../img/star.svg";
+import { NavLink } from "react-router-dom";
 
 const Card = ({ rated }) => {
   const w500Img = apiConfig.w500Img;
@@ -23,9 +24,11 @@ const Card = ({ rated }) => {
             {Math.round(`${rated.vote_average}` * 10) / 10}
           </p>
         </div>
-        <p className="w-[97%] pl-[2px] text-[12px]">
-          {truncate(`${rated.name}`)}
-        </p>
+        <NavLink to={`/video/${rated?.id}`}>
+          <p className="w-[97%] pl-[2px] text-[12px]">
+            {truncate(`${rated.name}`)}
+          </p>
+        </NavLink>
       </div>
     </div>
   );

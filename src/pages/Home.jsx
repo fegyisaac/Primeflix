@@ -7,11 +7,11 @@ import TRSeries from "../component/Body/TRSeries/TRSeries";
 
 const Home = () => {
   return (
-    <div className="pt-3 md:pt-7">
+    <div className="pt-3 sm:pt-0">
+      <div className="pb-12">
+        <Slider />
+      </div>
       <div className="container px-3">
-        <div className="pb-12">
-          <Slider />
-        </div>
         <TMovies />
         <TSeries />
         <TRMovies />

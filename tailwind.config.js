@@ -8,7 +8,7 @@ export default {
     screens: {
       xs: "375px",
       sm: "480px",
-      xsm: "640px",
+      xsm: "641px",
       md: "768px",
       xmd: "920px",
       lg: "1024px",

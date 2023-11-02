@@ -6,8 +6,7 @@ import apiConfig from "../component/api/apiConfig";
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
-const discover =
-  "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&api_key=";
+const discover = "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&api_key=";
 const popular = "/tv/popular?language=en-US&page=1&api_key=";
 const topRated = "/tv/top_rated?language=en-US&page=1&api_key=";
 const onTheAir = "/tv/on_the_air?language=en-US&page=1&api_key=";
@@ -46,31 +45,8 @@ const Series = () => {
     };
 
     getTv();
-  }, [url]);
+  }, [val]);
 
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      // if(!refOne.current.contain(e.target)) {
-      //   console.log("object");
-      // } else {
-      //   console.log("jjjj");
-      // }
-      if (menuRef.current.contains(e.target)) {
-        setMenu(false);
-        console.log(menuRef.current);
-
-      }
-
-    };
-    document.addEventListener("mousedown", handleClickOutside, true);
-    
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside, true);
-      
-    }
-  });
 
   return (
     <div className="container py-12 px-6">
@@ -80,14 +56,13 @@ const Series = () => {
         </p>
         <p className="flex-1 text-center">1 out of 395 Series | Primeflix</p>
         <span
-          onClick={(e) => setMenu((prev) => !prev)}
+          onClick={(e) => setMenu(!menu)}
           className="mr-5 cursor-pointer"
         >
           <BsThreeDotsVertical className="text-[20px]" />
         </span>
         {menu && (
           <div
-            ref={menuRef}
             className="absolute top-[140%] text-[14px] right-0 -translate-x-[20%] bg-black p-2 rounded-md"
           >
             {categories.map((categorie) => (

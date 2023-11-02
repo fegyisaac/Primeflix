@@ -46,13 +46,13 @@ const MultiCarousel = () => {
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/trending/tv/day?language=en-US&api_key=" + API_KEY;
 
-  const getSeries = async () => {
-    const res = await axios.get(url);
-    const data = res.data;
-    setSeries(data.results);
-  };
-
   useEffect(() => {
+    const getSeries = async () => {
+      const res = await axios.get(url);
+      const data = res.data;
+      setSeries(data.results);
+      console.log("tststst");
+    };
     getSeries();
   }, []);
 

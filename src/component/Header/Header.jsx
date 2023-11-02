@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Input from "./Input";
-import useMediaQuery from "../Hooks/useMediaQuery";
+// import useMediaQuery from "../Hooks/useMediaQuery";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 // import InpDesktop from "./inpDesktop";
 import InpMob from "./InpMob";
@@ -13,6 +13,16 @@ const navMenu = [
     id: 1,
     to: "/",
     name: "Home",
+  },
+  {
+    id: 6,
+    to: "/video/:id",
+    name: "hoho",
+  },
+  {
+    id: 7,
+    to: "/search/:searchFeed",
+    name: "npnp",
   },
   {
     id: 2,
@@ -33,13 +43,13 @@ const navMenu = [
 
 const Header = () => {
   const [nav, setNav] = useState(false);
-  const isTablet = useMediaQuery("(min-width: 480px)");
-  const [isDesktop, setDesktop] = useState(window.innerWidth > 480);
-  const [isMobile, setMobile] = useState(window.innerWidth < 480);
+  // const isTablet = useMediaQuery("(min-width: 480px)");
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 630);
+  const [isTablet, setTablet] = useState(window.innerWidth < 635);
 
   const updateMedia = () => {
-    setDesktop(window.innerWidth >= 480);
-    setMobile(window.innerWidth <= 481);
+    setDesktop(window.innerWidth >= 641);
+    setTablet(window.innerWidth <= 640);
   };
 
   useEffect(() => {
@@ -52,7 +62,7 @@ const Header = () => {
 
   return (
     <div className="bg-red-600 relative">
-      <div className="container px-3 py-[10px] text-[22px] flex_btw items-center gap-7 xl:gap-1">
+      <div className="container px-3 py-[8px] text-[22px] flex_btw items-center gap-7 xl:gap-1">
         <div
           onClick={() => setNav((prev) => !prev)}
           className="xmd:hidden text-white cursor-pointer"
@@ -91,7 +101,7 @@ const Header = () => {
         </ul>
         {/* {isTablet ? <Input setNav={setNav} /> : <p>hello</p>} */}
         {isDesktop && <DesktopInput />}
-        {/* {isMobile && <InpMob /> } */}
+        {isTablet && <InpMob setNav={setNav} /> }
         {/* <InpDesktop /> */}
         {/* <InpMob /> */}
         {/* <Desktop /> */}

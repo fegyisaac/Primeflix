@@ -6,8 +6,7 @@ import apiConfig from "../component/api/apiConfig";
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
-const discover =
-  "/discover/movie?include_adult=false&include_video=false&language=en-US&api_key=";
+const discover = "/discover/movie?include_adult=false&include_video=false&language=en-US&api_key=";
 const popular = "/movie/popular?language=en-US&page=1&api_key=";
 const topRated = "/movie/top_rated?language=en-US&page=1&api_key=";
 const upcoming = "/movie/upcoming?language=en-US&page=1&api_key=";
@@ -37,15 +36,16 @@ const Movies = () => {
     setVal(innerHTML);
     setMenu(false);
   };
-
+  
   useEffect(() => {
     const getMovies = async () => {
       const res = await axios.get(url);
       const data = res.data;
       setMovies(data.results);
+      console.log("object");
     };
     getMovies();
-  }, [url]);
+  }, [val]);
 
   return (
     <div className="container py-12 px-6">
@@ -55,7 +55,7 @@ const Movies = () => {
         </p>
         <p className="flex-1 text-center">1 out of 395 Movies | Primeflix</p>
         <span
-          onClick={(e) => setMenu((prev) => !prev)}
+          onClick={(e) => setMenu(!menu)}
           className="mr-5 cursor-pointer"
         >
           <BsThreeDotsVertical className="text-[20px]" />

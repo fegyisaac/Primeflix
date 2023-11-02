@@ -12,7 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 import VideoDetails from "./pages/VideoDetails";
-import SearchTerm from "./pages/SearchTerm";
+import SearchFeed from "./pages/SearchFeed";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
       <Route path="series" element={<Series />} />
       <Route path="advanced_search" element={<AdvSearch />} />
       <Route path="/video/:id" element={<VideoDetails />} />
-      <Route path="/search/:searchTerm" element={<SearchTerm />} />
+      <Route path="/search/:searchFeed" element={<SearchFeed />} />
     </Route>
   )
 );

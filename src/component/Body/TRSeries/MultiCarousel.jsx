@@ -45,17 +45,17 @@ const MultiCarousel = () => {
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/tv/top_rated?language=en-US&api_key=" + API_KEY;
 
-  const getRatedTV = async () => {
-    const res = await axios.get(url);
-    const data = res.data;
-    setTopRated(data.results);
-  };
-
+  
   useEffect(() => {
+    const getRatedTV = async () => {
+      const res = await axios.get(url);
+      const data = res.data;
+      setTopRated(data.results);
+      console.log("yyyyyy");
+    };
     getRatedTV();
   }, []);
 
-  // https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
       {topRated.map((rated) => (
