@@ -5,17 +5,18 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const options = ["All", "Movies", "Series"];
 
-const Input = ({ nav, setNav }) => {
+const InpMob = ({ setNav }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Series");
   const [search, setSearch] = useState(false);
   const isTablet = useMediaQuery("(min-width: 480px)");
+
   return (
     <div>
       <button
         onClick={(e) => {
           setSearch((prev) => !prev);
-          setNav(false);
+        //   setNav(false);
         }}
         className="text-white sm:hidden cursor-pointer flex_center"
       >
@@ -26,11 +27,12 @@ const Input = ({ nav, setNav }) => {
           <div className="pointer-events-none absolute inset-y-0 left-0 items-center h-full flex_center pl-[12px] sm:pl-[7px]  sm:flex">
             <span className="text-gray-500 text-[24px] sm:text-[20px]">
               <AiOutlineSearch />
+              
             </span>
           </div>
           <input
             type="text"
-            value={""}
+            value={"mobile"}
             onChange={() => ""}
             className=" outline-none sm:block w-full sm:w-[230px] xmd:w-[300px] lg:w-[360px] border-none rounded-3xl py-1.5 pl-10 sm:pl-7 pr-1 text-gray-900 placeholder:text-gray-800 text-[17px] sm:text-sm leading-[9px] sm:leading-5"
             placeholder="Search..."
@@ -70,4 +72,4 @@ const Input = ({ nav, setNav }) => {
   );
 };
 
-export default Input;
+export default InpMob;

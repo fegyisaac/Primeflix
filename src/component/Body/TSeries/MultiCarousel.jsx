@@ -50,7 +50,6 @@ const MultiCarousel = () => {
     const res = await axios.get(url);
     const data = res.data;
     setSeries(data.results);
-    // console.log(data.results);
   };
 
   useEffect(() => {

@@ -7,3 +7,14 @@ const apiConfig = {
 };
 
 export default apiConfig;
+
+
+// const date = "2023-11-09"
+// const timeStamp = new Date(date).getTime()
+// const day = new Date(timeStamp).getDate()
+// const month = new Date(timeStamp).getMonth() + 1;
+// const months = new Date(timeStamp).toLocaleString("default", {month: "short"});
+
+// const year = new Date(timeStamp).getFullYear()
+
+// console.log(months);

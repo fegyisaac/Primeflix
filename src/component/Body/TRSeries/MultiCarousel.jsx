@@ -49,7 +49,6 @@ const MultiCarousel = () => {
     const res = await axios.get(url);
     const data = res.data;
     setTopRated(data.results);
-    console.log(data.results);
   };
 
   useEffect(() => {

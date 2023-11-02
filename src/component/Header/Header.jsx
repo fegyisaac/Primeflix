@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Input from "./Input";
+import useMediaQuery from "../Hooks/useMediaQuery";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+// import InpDesktop from "./inpDesktop";
+import InpMob from "./InpMob";
+// import Desktop from "./DesktopInput";
+import DesktopInput from "./DesktopInput";
 
 const navMenu = [
   {
@@ -21,13 +26,30 @@ const navMenu = [
   },
   {
     id: 4,
-    to: "search",
+    to: "advanced_search",
     name: "Advanced Search",
   },
 ];
 
 const Header = () => {
   const [nav, setNav] = useState(false);
+  const isTablet = useMediaQuery("(min-width: 480px)");
+  const [isDesktop, setDesktop] = useState(window.innerWidth > 480);
+  const [isMobile, setMobile] = useState(window.innerWidth < 480);
+
+  const updateMedia = () => {
+    setDesktop(window.innerWidth >= 480);
+    setMobile(window.innerWidth <= 481);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMedia);
+
+    return () => {
+      window.removeEventListener("resize", updateMedia);
+    };
+  });
+
   return (
     <div className="bg-red-600 relative">
       <div className="container px-3 py-[10px] text-[22px] flex_btw items-center gap-7 xl:gap-1">
@@ -67,11 +89,14 @@ const Header = () => {
             </NavLink>
           ))}
         </ul>
-
-        <Input nav={nav} setNav={setNav} />
+        {/* {isTablet ? <Input setNav={setNav} /> : <p>hello</p>} */}
+        {isDesktop && <DesktopInput />}
+        {/* {isMobile && <InpMob /> } */}
+        {/* <InpDesktop /> */}
+        {/* <InpMob /> */}
+        {/* <Desktop /> */}
       </div>
     </div>
   );
 };
-// flex_btw gap-4 items-center
 export default Header;
