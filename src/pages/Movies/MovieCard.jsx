@@ -1,5 +1,5 @@
-import apiConfig from "./api/apiConfig";
-import star from "../img/star.svg";
+import apiConfig from "../../component/api/apiConfig";
+import star from '../../img/star.svg'
 import { NavLink } from "react-router-dom";
 
 const Card = ({ movies }) => {

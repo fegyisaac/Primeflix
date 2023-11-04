@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Card from "./Card";
 import apiConfig from "../../api/apiConfig";
+import { TRSCard } from "../..";
 
-const MultiCarousel = () => {
+const TRSCarousel = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 1500, min: 1300 },
@@ -45,7 +45,6 @@ const MultiCarousel = () => {
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/tv/top_rated?language=en-US&api_key=" + API_KEY;
 
-  
   useEffect(() => {
     const getRatedTV = async () => {
       const res = await axios.get(url);
@@ -59,10 +58,11 @@ const MultiCarousel = () => {
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
       {topRated.map((rated) => (
-        <Card rated={rated} />
+        // <Card rated={rated} />
+        <TRSCard rated={rated} />
       ))}
     </Carousel>
   );
 };
 
-export default MultiCarousel;
+export default TRSCarousel;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import star from "../img/star.svg";
-import apiConfig from "../component/api/apiConfig";
+import star from "../../../img/star.svg";
+import apiConfig from "../../../component/api/apiConfig";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 

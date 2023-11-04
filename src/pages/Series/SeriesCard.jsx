@@ -1,15 +1,15 @@
-import apiConfig from "../../api/apiConfig";
-import star from "../../../img/star.svg";
+import apiConfig from "../../component/api/apiConfig";
+import star from '../../img/star.svg'
 import { NavLink } from "react-router-dom";
 
-const Card = ({ tv }) => {
+const SeriesCard = ({ tv }) => {
   const w500Img = apiConfig.w500Img;
 
   const truncate = (str) => {
     return str.length > 19 ? str.substring(0, 17) + "..." : str;
   };
   return (
-    <div className="bg-blue-500 w-[120px] h-[230px] card-ratio  rounded-xl">
+    <div className="bg-blue-500 w-[120px] h-[230px] card-ratio  rounded-xl overflow-hidden">
       <div className="w-full h-[180px] xsm:h-[190px] rounded-xl flex_center ">
         <img
           src={`${w500Img}${tv.poster_path}`}
@@ -24,14 +24,11 @@ const Card = ({ tv }) => {
             {Math.round(`${tv.vote_average}` * 10) / 10}
           </p>
         </div>
-        <NavLink to={`/tv/${tv?.id}`}>
-          <p className="w-[97%] pl-[2px] text-[12px]">
-            {truncate(`${tv.name}`)}
-          </p>
-        </NavLink>
+        <p className="w-[97%] pl-[2px] text-[12px]">
+          <NavLink to={`/tv/${tv.id}`}>{truncate(`${tv.name}`)}</NavLink>
+        </p>
       </div>
     </div>
   );
 };
-
-export default Card;
+export default SeriesCard;

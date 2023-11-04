@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Card from "./Card";
+import {TRMCard} from "../..";
 import apiConfig from "../../api/apiConfig";
 
-const MultiCarousel = () => {
+const TRMCarousel = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 1500, min: 1300 },
@@ -39,30 +39,30 @@ const MultiCarousel = () => {
     },
   };
 
-  const [movies, setMovies] = useState([]);
+  const [topRated, setTopRated] = useState([]);
 
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
-  const url = baseUrl + "/trending/movie/week?language=en-US&api_key=" + API_KEY;
+  const url = baseUrl + "/movie/top_rated?language=en-US&api_key=" + API_KEY;
 
-  
   useEffect(() => {
-    const getMovies = async () => {
+    const getTopRated = async () => {
       const res = await axios.get(url);
       const data = res.data;
-      setMovies(data.results);
-      console.log("object");
+      setTopRated(data.results);
+      console.log("vvvvv");
     };
-    getMovies();
+    getTopRated();
   }, []);
 
+  // /movie/top_rated?language=en-US&
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
-      {movies.map((movie) => (
-        <Card movies={movie} />
+      {topRated.map((rated) => (
+        <TRMCard rated={rated} />
       ))}
     </Carousel>
   );
 };
 
-export default MultiCarousel;
+export default TRMCarousel;

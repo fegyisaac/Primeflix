@@ -1,9 +1,5 @@
 import React from "react";
-import Slider from "../component/Body/Slider";
-import TMovies from "../component/Body/TMovies/TMovies";
-import TSeries from "../component/Body/TSeries/TSeries";
-import TRMovies from "../component/Body/TRMovies/TRMovies";
-import TRSeries from "../component/Body/TRSeries/TRSeries";
+import {Slider, TMovies, TSeries, TRSeries, TRMovies} from "../../component";
 
 const Home = () => {
   return (

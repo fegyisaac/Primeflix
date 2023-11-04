@@ -2,7 +2,7 @@ import apiConfig from "../../api/apiConfig";
 import star from "../../../img/star.svg";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ movies }) => {
+const TRMCard = ({ rated }) => {
   const w500Img = apiConfig.w500Img;
 
   const truncate = (str) => {
@@ -12,7 +12,7 @@ const Card = ({ movies }) => {
     <div className="bg-blue-500 w-[120px] h-[230px] card-ratio  rounded-xl">
       <div className="w-full h-[180px] xsm:h-[190px] rounded-xl flex_center ">
         <img
-          src={`${w500Img}${movies.poster_path}`}
+          src={`${w500Img}${rated.poster_path}`}
           className="rounded-md h-full w-full object-cover"
           loading="lazy"
         />
@@ -21,16 +21,16 @@ const Card = ({ movies }) => {
         <div className="">
           <img src={star} width={"15px"} className="pr-1 inline" />
           <p className="text-[12px] inline">
-            {Math.round(`${movies.vote_average}` * 10) / 10}
+            {Math.round(`${rated.vote_average}` * 10) / 10}
           </p>
         </div>
-        <NavLink to={`/video/${movies.id}`}>
-          <p className="w-[97%] pl-[2px] text-[12px] cursor-pointer">
-            {truncate(`${movies.title}`)}
+        <NavLink to={`/video/${rated.id}`}>
+          <p className="w-[97%] pl-[2px] text-[12px]">
+            {truncate(`${rated.title}`)}
           </p>
         </NavLink>
       </div>
     </div>
   );
 };
-export default Card;
+export default TRMCard;

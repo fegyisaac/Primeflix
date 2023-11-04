@@ -4,7 +4,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 
 const options = ["All", "Movies", "Series"];
 
-const InpMob = ({ setNav }) => {
+const MobileInput = ({ setNav }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Series");
   const [search, setSearch] = useState(false);
@@ -73,4 +73,4 @@ const InpMob = ({ setNav }) => {
   );
 };
 
-export default InpMob;
+export default MobileInput;

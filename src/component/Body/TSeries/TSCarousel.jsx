@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Card from "./Card";
+import TSCard from "./TSCard";
 import apiConfig from "../../api/apiConfig";
 
-// https://api.themoviedb.org/3/trending/tv/day?language=en-US
-const MultiCarousel = () => {
+const TSCarousel = () => {
   const responsive = {
     desktop: {
       breakpoint: { max: 1500, min: 1300 },
@@ -58,10 +57,10 @@ const MultiCarousel = () => {
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
       {series.map((tv) => (
-        <Card tv={tv} />
+        <TSCard tv={tv} />
       ))}
     </Carousel>
   );
 };
 
-export default MultiCarousel;
+export default TSCarousel;

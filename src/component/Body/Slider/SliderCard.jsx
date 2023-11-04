@@ -1,5 +1,5 @@
 import React from "react";
-import star from "../../img/star.svg";
+import star from '../../../img/star.svg';
 
 const SliderCard = () => {
   // `/video/${movies.id}`

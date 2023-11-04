@@ -30,7 +30,7 @@ function App() {
       const isAutoSlide = currentIndex === slides.length - 1;
       const newIndex = isAutoSlide ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
-    }, 1500);
+    }, 2500);
 
     return () => {
       clearInterval(interval);

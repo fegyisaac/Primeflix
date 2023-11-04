@@ -2,7 +2,7 @@ import apiConfig from "../../api/apiConfig";
 import star from "../../../img/star.svg";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ rated }) => {
+const TRSCard = ({ rated }) => {
   const w500Img = apiConfig.w500Img;
 
   const truncate = (str) => {
@@ -33,4 +33,4 @@ const Card = ({ rated }) => {
     </div>
   );
 };
-export default Card;
+export default TRSCard;

@@ -1,21 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import MovieCard from "../component/MovieCard";
+import SeriesCard from "./SeriesCard";
 import axios from "axios";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import apiConfig from "../component/api/apiConfig";
+import apiConfig from "../../component/api/apiConfig";
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
-const discover = "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&api_key=";
-const popular = "/movie/popular?language=en-US&page=1&api_key=";
-const topRated = "/movie/top_rated?language=en-US&page=1&api_key=";
-const upcoming = "/movie/upcoming?language=en-US&page=1&api_key=";
+const discover =
+  "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&api_key=";
+const popular = "/tv/popular?language=en-US&page=1&api_key=";
+const topRated = "/tv/top_rated?language=en-US&page=1&api_key=";
+const onTheAir = "/tv/on_the_air?language=en-US&page=1&api_key=";
 
-const Movies = () => {
+const Series = () => {
   const [menu, setMenu] = useState(false);
 
-  const categories = ["All", "Popular", "Top Rated", "Upcoming"];
-  const [movies, setMovies] = useState([]);
+  const categories = ["All", "Popular", "Top Rated", "On The Air"];
+  const [tv, setTv] = useState([]);
   const [val, setVal] = useState("All");
   const [url, setUrl] = useState(baseUrl + discover + API_KEY);
 
@@ -27,8 +28,8 @@ const Movies = () => {
         ? setUrl(baseUrl + popular + API_KEY)
         : val === "Top Rated"
         ? setUrl(baseUrl + topRated + API_KEY)
-        : val === "Upcoming"
-        ? setUrl(baseUrl + upcoming + API_KEY)
+        : val === "On The Air"
+        ? setUrl(baseUrl + onTheAir + API_KEY)
         : setUrl(baseUrl + discover + API_KEY);
     }
 
@@ -36,28 +37,25 @@ const Movies = () => {
     setVal(innerHTML);
     setMenu(false);
   };
-  
+
   useEffect(() => {
-    const getMovies = async () => {
+    const getTv = async () => {
       const res = await axios.get(url);
       const data = res.data;
-      setMovies(data.results);
-      console.log("object");
+      setTv(data.results);
     };
-    getMovies();
+
+    getTv();
   }, [val]);
 
   return (
     <div className="container py-12 px-6">
       <div className=" flex_btw items-center mb-7 gap-9 relative">
         <p className="w-[150px]">
-          <span>{val}</span> Movies
+          <span>{val}</span> Series
         </p>
-        <p className="flex-1 text-center">1 out of 395 Movies | Primeflix</p>
-        <span
-          onClick={(e) => setMenu(!menu)}
-          className="mr-5 cursor-pointer"
-        >
+        <p className="flex-1 text-center">1 out of 395 Series | Primeflix</p>
+        <span onClick={(e) => setMenu(!menu)} className="mr-5 cursor-pointer">
           <BsThreeDotsVertical className="text-[20px]" />
         </span>
         {menu && (
@@ -74,14 +72,13 @@ const Movies = () => {
           </div>
         )}
       </div>
-
-      <div className="grid grid-auto-fit-[9rem] gap-y-6">
-        {movies.map((movie) => (
-          <MovieCard movies={movie} />
+      <div className="grid grid-auto-fit-[9rem] place-items-center gap-y-6">
+        {tv.map((tv) => (
+          <SeriesCard tv={tv} />
         ))}
       </div>
     </div>
   );
 };
 
-export default Movies;
+export default Series;

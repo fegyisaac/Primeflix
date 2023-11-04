@@ -1,47 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import InpMob from "./InpMob";
-import DesktopInput from "./DesktopInput";
+import {MobileInput,DesktopInput,} from "../../component";
 
 
-const navMenu = [
-  {
-    id: 1,
-    to: "/",
-    name: "Home",
-  },
-  {
-    id: 6,
-    to: "/video/:id",
-    name: "hoho",
-  },
-  {
-    id: 6,
-    to: "/tv/:id",
-    name: "gfgfg",
-  },
-  {
-    id: 7,
-    to: "/search/:searchTerm",
-    name: "npnp",
-  },
-  {
-    id: 2,
-    to: "movies",
-    name: "Movies",
-  },
-  {
-    id: 3,
-    to: "series",
-    name: "Series",
-  },
-  {
-    id: 4,
-    to: "advanced_search",
-    name: "Advanced Search",
-  },
-];
+import { navMenu } from "../constant";
+
+
 
 const Header = () => {
   const [nav, setNav] = useState(false);
@@ -95,6 +60,7 @@ const Header = () => {
             </div>
           </NavLink>
         </div>
+        {/* Desktop Nav */}
         <ul className="hidden text-[15px] text-white w-[600px] xmd:block">
           {navMenu.map((menu) => (
             <NavLink key={menu.id} to={menu.to}>
@@ -103,7 +69,7 @@ const Header = () => {
           ))}
         </ul>
         {isDesktop && <DesktopInput />}
-        {isTablet && <InpMob setNav={setNav} />}
+        {isTablet && <MobileInput setNav={setNav} />}
       </div>
     </div>
   );

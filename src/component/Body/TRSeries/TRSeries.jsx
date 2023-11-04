@@ -1,5 +1,5 @@
 import React from "react";
-import MultiCarousel from "./MultiCarousel";
+import MultiCarousel from "./TRSCarousel";
 import { NavLink } from "react-router-dom";
 
 const TMovies = () => {

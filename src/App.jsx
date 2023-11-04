@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 // import router from "./Layout/RootLayout"
 import RootLayout from "./Layout/RootLayout";
-import Home from "./pages/Home";
-import Movies from "./pages/Movies";
-import Series from "./pages/Series";
-import AdvSearch from "./pages/AdvSearch";
+import Home from "./pages/Home/Home";
+import Movies from "./pages/Movies/Movies";
+import Series from "./pages/Series/Series";
+import AdvSearch from "./pages/AdvancedSearch/AdvSearch";
 import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import SearchFeed from "./pages/SearchFeed";
-import VideoId from "./pages/VideoId";
-import TvId from "./pages/Tvid";
+import SearchFeed from "./pages/SearchFeed/SearchFeed";
+import VideoId from "./pages/idDetails/movieId/VideoId";
+import TvId from "./pages/idDetails/tvId/TvId";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
