@@ -6,7 +6,7 @@ import apiConfig from "../component/api/apiConfig";
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
-const discover = "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&api_key=";
+const discover = "/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&api_key=";
 const popular = "/tv/popular?language=en-US&page=1&api_key=";
 const topRated = "/tv/top_rated?language=en-US&page=1&api_key=";
 const onTheAir = "/tv/on_the_air?language=en-US&page=1&api_key=";

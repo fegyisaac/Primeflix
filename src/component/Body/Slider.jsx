@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { RxDotFilled } from "react-icons/rx";
+// import { RxDotFilled } from "react-icons/rx";
+import SliderCard from "./SliderCard";
 
 function App() {
   const slides = [
@@ -48,36 +49,22 @@ function App() {
     setCurrentIndex(newIndex);
   };
 
-  // const goToSlide = (slideIndex) => {
-  //   setCurrentIndex(slideIndex);
-  // };
-
   return (
     <div className="w-full h-[240px] slider-h max-w-[1200px] m-auto relative group text-white">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-        className="w-full h-full bg-center bg-cover duration-300"
-      ></div>
+        className="w-full h-full px-20 bg-center bg-cover duration-300"
+      >
+        <SliderCard />
+      </div>
       {/* Left Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] translate-y-[-50%] left-[10px] text-2xl rounded-full p-2 bg-gray-700/30 cursor-pointer">
+      <div className="hidden group-hover:block absolute top-[50%] z-20 translate-y-[-50%] left-[10px] text-2xl rounded-full p-2 bg-gray-700/30 cursor-pointer">
         <BsChevronCompactLeft onClick={prevSlide} size={20} />
       </div>
       {/* Right Arrow */}
-      <div className="hidden group-hover:block absolute top-[50%] translate-y-[-50%] right-[10px] text-2xl rounded-full p-2 bg-gray-700/30 cursor-pointer">
+      <div className="hidden group-hover:block absolute top-[50%] z-20 translate-y-[-50%] right-[10px] text-2xl rounded-full p-2 bg-gray-700/30 cursor-pointer">
         <BsChevronCompactRight onClick={nextSlide} size={20} />
       </div>
-
-      {/* <div className='flex top-4 justify-center py-2'>
-        {slides.map((slide, slideIndex) => (
-          <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className='text-2xl cursor-pointer '
-          >
-            <RxDotFilled className='text-blue-700'/>
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }

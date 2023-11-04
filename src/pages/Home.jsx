@@ -7,7 +7,7 @@ import TRSeries from "../component/Body/TRSeries/TRSeries";
 
 const Home = () => {
   return (
-    <div className="pt-3 sm:pt-0">
+    <div className="pt-3 sm:pt-0 xl:pt-8">
       <div className="pb-12">
         <Slider />
       </div>

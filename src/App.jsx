@@ -11,8 +11,9 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
-import VideoDetails from "./pages/VideoDetails";
 import SearchFeed from "./pages/SearchFeed";
+import VideoId from "./pages/VideoId";
+import TvId from "./pages/Tvid";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,8 +22,9 @@ const router = createBrowserRouter(
       <Route path="movies" element={<Movies />} />
       <Route path="series" element={<Series />} />
       <Route path="advanced_search" element={<AdvSearch />} />
-      <Route path="/video/:id" element={<VideoDetails />} />
-      <Route path="/search/:searchFeed" element={<SearchFeed />} />
+      <Route path="/video/:id" element={<VideoId />} />
+      <Route path="/tv/:id" element={<TvId />} />
+      <Route path="/search/:searchTerm" element={<SearchFeed />} />
     </Route>
   )
 );

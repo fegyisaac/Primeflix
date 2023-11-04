@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Input from "./Input";
-// import useMediaQuery from "../Hooks/useMediaQuery";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-// import InpDesktop from "./inpDesktop";
 import InpMob from "./InpMob";
-// import Desktop from "./DesktopInput";
 import DesktopInput from "./DesktopInput";
+
 
 const navMenu = [
   {
@@ -20,8 +17,13 @@ const navMenu = [
     name: "hoho",
   },
   {
+    id: 6,
+    to: "/tv/:id",
+    name: "gfgfg",
+  },
+  {
     id: 7,
-    to: "/search/:searchFeed",
+    to: "/search/:searchTerm",
     name: "npnp",
   },
   {
@@ -43,7 +45,6 @@ const navMenu = [
 
 const Header = () => {
   const [nav, setNav] = useState(false);
-  // const isTablet = useMediaQuery("(min-width: 480px)");
   const [isDesktop, setDesktop] = useState(window.innerWidth > 630);
   const [isTablet, setTablet] = useState(window.innerWidth < 635);
 
@@ -58,11 +59,12 @@ const Header = () => {
     return () => {
       window.removeEventListener("resize", updateMedia);
     };
-  });
+  }, []);
 
   return (
     <div className="bg-red-600 relative">
-      <div className="container px-3 py-[8px] text-[22px] flex_btw items-center gap-7 xl:gap-1">
+      <div className="container px-3 py-[7px] text-[22px] flex_btw items-center gap-7 xl:gap-1">
+        {/* mob nav */}
         <div
           onClick={() => setNav((prev) => !prev)}
           className="xmd:hidden text-white cursor-pointer"
@@ -85,6 +87,7 @@ const Header = () => {
             </div>
           )}
         </div>
+
         <div className="text-orenge font-semibold uppercase">
           <NavLink to="/">
             <div>
@@ -99,12 +102,8 @@ const Header = () => {
             </NavLink>
           ))}
         </ul>
-        {/* {isTablet ? <Input setNav={setNav} /> : <p>hello</p>} */}
         {isDesktop && <DesktopInput />}
-        {isTablet && <InpMob setNav={setNav} /> }
-        {/* <InpDesktop /> */}
-        {/* <InpMob /> */}
-        {/* <Desktop /> */}
+        {isTablet && <InpMob setNav={setNav} />}
       </div>
     </div>
   );

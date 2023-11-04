@@ -1,5 +1,6 @@
 import apiConfig from "./api/apiConfig";
 import star from "../img/star.svg";
+import { NavLink } from "react-router-dom";
 
 const Card = ({ movies }) => {
   const w500Img = apiConfig.w500Img;
@@ -24,7 +25,9 @@ const Card = ({ movies }) => {
           </p>
         </div>
         <p className="w-[97%] pl-[2px] text-[12px] cursor-pointer">
-          {truncate(`${movies.title}`)}
+          <NavLink to={`/video/${movies.id}`}>
+            {truncate(`${movies.title}`)}
+          </NavLink>
         </p>
       </div>
     </div>

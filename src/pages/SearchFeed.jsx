@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router-dom";
 
 const SearchFeed = () => {
-  return (
-    <div>SearchFeed</div>
-  )
-}
+  const { searchTerm } = useParams();
 
-export default SearchFeed
+  return (
+    <div>
+      <div>
+        SearchFeed <span>{searchTerm}</span>
+      </div>
+    </div>
+  );
+};
+
+export default SearchFeed;

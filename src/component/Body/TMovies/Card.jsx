@@ -24,7 +24,7 @@ const Card = ({ movies }) => {
             {Math.round(`${movies.vote_average}` * 10) / 10}
           </p>
         </div>
-        <NavLink to={`/video/${movies?.id}`}>
+        <NavLink to={`/video/${movies.id}`}>
           <p className="w-[97%] pl-[2px] text-[12px] cursor-pointer">
             {truncate(`${movies.title}`)}
           </p>

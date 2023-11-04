@@ -6,7 +6,7 @@ import apiConfig from "../component/api/apiConfig";
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
-const discover = "/discover/movie?include_adult=false&include_video=false&language=en-US&api_key=";
+const discover = "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&api_key=";
 const popular = "/movie/popular?language=en-US&page=1&api_key=";
 const topRated = "/movie/top_rated?language=en-US&page=1&api_key=";
 const upcoming = "/movie/upcoming?language=en-US&page=1&api_key=";

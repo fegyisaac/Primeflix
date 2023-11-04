@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
-import useMediaQuery from "../Hooks/useMediaQuery";
 import { AiOutlineSearch } from "react-icons/ai";
 
 const options = ["All", "Movies", "Series"];
@@ -9,7 +8,6 @@ const InpMob = ({ setNav }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Series");
   const [search, setSearch] = useState(false);
-  const isTablet = useMediaQuery("(min-width: 480px)");
 
   return (
     <div>
