@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import {MobileInput,DesktopInput,} from "../../component";
-
+import { MobileInput, DesktopInput } from "..";
 
 import { navMenu } from "../constant";
-
-
 
 const Header = () => {
   const [nav, setNav] = useState(false);

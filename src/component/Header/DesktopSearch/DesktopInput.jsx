@@ -2,14 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { BsFillCaretDownFill, BsFillCaretUpFill } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import DesktopSearchFeed from "./DesktopSearchFeed";
 
 const DesktopInput = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Series");
   const [searchTerm, setSearchTerm] = useState("");
-
+  
   const navigate = useNavigate();
-
+  const myRef = useRef(null);
+  
   const options = ["All", "Movies", "Series"];
 
   const handleSubmit = (e) => {
@@ -19,22 +21,22 @@ const DesktopInput = () => {
 
       setSearchTerm("");
     }
+    console.log(searchTerm);
   };
+  
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
 
-  // useEffect(() => {
-  //   const keyDownHandler = (e) => {
-  //     console.log("user presed", e.key);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
-  //     if (e.key === "Enter") {
-  //       handleSubmit(e);
-  //     }
-  //   };
-
-  //   document.addEventListener("keydown", keyDownHandler);
-  //   return () => {
-  //     document.removeEventListener("keydown", keyDownHandler);
-  //   };
-  // }, []);
+  const handleClickOutside = (e) => {
+    if (!myRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="relative shadow-sm  outline-none">
@@ -57,12 +59,12 @@ const DesktopInput = () => {
               e.preventDefault();
               setIsOpen(!isOpen);
             }}
-            className="text-[12px] cursor-pointer transition-all duration-700  flex_btw items-center h-full w-full px-[8px]"
+            className="text-[12px] cursor-pointer transition-all duration-700 z-50 flex_btw items-center h-full w-full px-[8px]"
           >
             <p>{selected}</p>
             {!isOpen ? <BsFillCaretDownFill /> : <BsFillCaretUpFill />}
           </div>
-          <div>
+          <div ref={myRef} className="z-30">
             {isOpen ? (
               <div className="bg-green-500 top-[110%] absolute z-20 left-1/2 -translate-x-1/2 p-1  text-[15px] rounded-sm">
                 {options.map((option) => (
@@ -82,6 +84,8 @@ const DesktopInput = () => {
           </div>
         </div>
       </div>
+
+      <DesktopSearchFeed selected={selected} searchTerm={searchTerm} />
     </form>
   );
 };

@@ -1,4 +1,3 @@
-
 export { default as Slider } from "./Body/Slider/Slider";
 export { default as SliderCard } from "./Body/Slider/SliderCard";
 
@@ -20,10 +19,10 @@ export { default as TSeries } from "./Body/TSeries/TSeries";
 
 export { default as Footer } from "./Footer/Footer";
 
-export { default as DesktopInput } from "./Header/DesktopInput";
+export { default as DesktopInput } from "./Header/DesktopSearch/DesktopInput";
+export { default as DesktopSearchFeed } from "./Header/DesktopSearch/DesktopSearchFeed";
 export { default as Header } from "./Header/Header";
-export { default as MobileInput } from "./Header/MobileInput";
-
+export { default as MobileInput } from "./Header/MobileSearch/MobileInput";
 
 export { default as RootLayout } from "../Layout/RootLayout";
 
@@ -42,5 +41,3 @@ export { default as SearchFeed } from "../pages/SearchFeed/SearchFeed";
 
 export { default as Series } from "../pages/Series/Series";
 export { default as SeriesCard } from "../pages/Series/SeriesCard";
-
-

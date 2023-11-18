@@ -3,6 +3,9 @@ import MovieCard from "./MovieCard";
 import axios from "axios";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import apiConfig from "../../component/api/apiConfig";
+import ReactPaginate from "react-paginate";
+
+
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
@@ -41,11 +44,33 @@ const Movies = () => {
     const getMovies = async () => {
       const res = await axios.get(url);
       const data = res.data;
-      setMovies(data.results);
-      console.log("object");
+      setMovies(data.results.slice(0, 16));
     };
     getMovies();
   }, [val]);
+
+  const mainRef = useRef(null);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    if (!mainRef.current.contains(e.target)) {
+      setMenu(false);
+    }
+  };
+  
+  // const [pageNumber, setPageNumber] = useState(0)
+  // const usersPerPage = 16
+  // const pagesVisited = pageNumber * usersPerPage
+
+  // const displayUsers = () => {
+    
+  // }
 
   return (
     <div className="container py-12 px-6">
@@ -58,7 +83,7 @@ const Movies = () => {
           <BsThreeDotsVertical className="text-[20px]" />
         </span>
         {menu && (
-          <div className="absolute top-[140%] text-[14px] right-0 -translate-x-[20%] bg-black p-2 rounded-md">
+          <div ref={mainRef} className="absolute top-0 text-[14px] -right-1 -translate-x-[20%] bg-black p-2 rounded-md">
             {categories.map((categorie) => (
               <p
                 key={categorie}
@@ -77,6 +102,11 @@ const Movies = () => {
           <MovieCard movies={movie} />
         ))}
       </div>
+
+      <div>
+
+      </div>
+      
     </div>
   );
 };

@@ -42,11 +42,26 @@ const Series = () => {
     const getTv = async () => {
       const res = await axios.get(url);
       const data = res.data;
-      setTv(data.results);
+      setTv(data.results.slice(0, 16));
     };
 
     getTv();
   }, [val]);
+
+  const mainRef = useRef(null);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
+  const handleClickOutside = (e) => {
+    if (!mainRef.current.contains(e.target)) {
+      setMenu(false);
+    }
+  };
 
   return (
     <div className="container py-12 px-6">
@@ -59,7 +74,10 @@ const Series = () => {
           <BsThreeDotsVertical className="text-[20px]" />
         </span>
         {menu && (
-          <div className="absolute top-[140%] text-[14px] right-0 -translate-x-[20%] bg-black p-2 rounded-md">
+          <div
+            ref={mainRef}
+            className="absolute top-0 text-[14px] -right-1 -translate-x-[20%] bg-black p-2 rounded-md"
+          >
             {categories.map((categorie) => (
               <p
                 key={categorie}
@@ -73,8 +91,8 @@ const Series = () => {
         )}
       </div>
       <div className="grid grid-auto-fit-[9rem] place-items-center gap-y-6">
-        {tv.map((tv) => (
-          <SeriesCard tv={tv} />
+        {tv.map((tv, i) => (
+          <SeriesCard tv={tv} key={i} />
         ))}
       </div>
     </div>

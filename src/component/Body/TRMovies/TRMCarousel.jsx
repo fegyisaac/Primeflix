@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import {TRMCard} from "../..";
+import { TRMCard } from "../..";
 import apiConfig from "../../api/apiConfig";
 
 const TRMCarousel = () => {
@@ -46,13 +46,17 @@ const TRMCarousel = () => {
   const url = baseUrl + "/movie/top_rated?language=en-US&api_key=" + API_KEY;
 
   useEffect(() => {
-    const getTopRated = async () => {
-      const res = await axios.get(url);
-      const data = res.data;
-      setTopRated(data.results);
-      console.log("vvvvv");
-    };
-    getTopRated();
+    try {
+      const getTopRated = async () => {
+        const res = await axios.get(url);
+        const data = res.data;
+        setTopRated(data.results);
+        console.log("vvvvv");
+      };
+      getTopRated();
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   // /movie/top_rated?language=en-US&

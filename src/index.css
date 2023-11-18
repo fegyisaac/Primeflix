@@ -1,29 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 .container {
-    @apply max-w-[1200px] sm:w-full md:w-[768px] xmd:w-[920px] xl:w-[1200px] xl:px-0 m-auto;
+  @apply max-w-[1200px] sm:w-full md:w-[768px] xmd:w-[920px] xl:w-[1200px] xl:px-0 m-auto;
 }
 
 .slider-h {
-    @apply xs:h-[300px] sm:h-[370px] xsm:h-[470px] xmd:h-[500px] lg:h-[560px] ;
+  @apply xs:h-[300px] sm:h-[370px] xsm:h-[470px] xmd:h-[500px] lg:h-[560px];
 }
 
 .card-ratio {
-    @apply  sm:w-[127px] xsm:w-[135px] xsm:h-[240px];
+  @apply sm:w-[127px] xsm:w-[135px] xsm:h-[240px];
 }
+
 .flex_btw {
-    @apply flex justify-between;
+  @apply flex justify-between;
 }
 
 .flex_center {
-    @apply flex justify-center items-center;
+  @apply flex justify-center items-center;
 }
 .backdrop-ratio {
-    @apply sm:h-[320px] xsm:h-[380px] xmd:h-[390px] lg:h-[520px] md:w-[94%] xmd:w-[97%] ;
+  @apply sm:h-[320px] xsm:h-[380px] xmd:h-[390px] lg:h-[520px] md:w-[94%] xmd:w-[97%];
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    background-color: hsl(0, 48%, 22%);
+    width: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: green;
+    height: 100%;
+    margin: 7px 0;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: whitesmoke;
+    border-radius: 10px;
+  }
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(0, 1%, 44%);
+  }
+  .hero__shadow {
+    box-shadow: 1px -165px 65px -89px rgba(17,24,39,1) inset;
+    -webkit-box-shadow: 1px -165px 65px -89px rgba(17,24,39,1) inset;
+    -moz-box-shadow: 1px -165px 65px -89px rgba(17,24,39,1) inset;
+  }
 }

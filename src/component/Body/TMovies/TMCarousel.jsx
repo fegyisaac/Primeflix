@@ -47,13 +47,17 @@ const TMCarousel = () => {
     baseUrl + "/trending/movie/week?language=en-US&api_key=" + API_KEY;
 
   useEffect(() => {
-    const getMovies = async () => {
-      const res = await axios.get(url);
-      const data = res.data;
-      setMovies(data.results);
-      console.log("object");
-    };
-    getMovies();
+    try {
+      const getMovies = async () => {
+        const res = await axios.get(url);
+        const data = res.data;
+        setMovies(data.results);
+        console.log("object");
+      };
+      getMovies();
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   return (
