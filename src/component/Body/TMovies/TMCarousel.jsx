@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import TMCard from "./TMCard";
 import apiConfig from "../../api/apiConfig";
+import Loading from "../../Loading";
 
 const TMCarousel = () => {
   const responsive = {
@@ -40,6 +41,7 @@ const TMCarousel = () => {
   };
 
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
@@ -47,24 +49,29 @@ const TMCarousel = () => {
     baseUrl + "/trending/movie/week?language=en-US&api_key=" + API_KEY;
 
   useEffect(() => {
+    setIsLoading(true);
     try {
       const getMovies = async () => {
         const res = await axios.get(url);
         const data = res.data;
         setMovies(data.results);
-        console.log("object");
+        console.log("Data from TM Car");
+        setIsLoading(false);
       };
       getMovies();
     } catch (err) {
-      console.log(err);
+      console.log(err); 
     }
   }, []);
 
+
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
-      {movies.map((movie) => (
-        <TMCard movies={movie} />
-      ))}
+      {isLoading
+        ? Array(8)
+            .fill(0)
+            .map(() => <Loading />)
+        : movies.map((movie) => <TMCard movies={movie} />)}
     </Carousel>
   );
 };

@@ -17,19 +17,16 @@ const TvId = () => {
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + `/tv/${id}?language=en-US&api_key=` + API_KEY;
-  const link =
-    baseUrl + `/tv/${id}/similar?language=en-US&api_key=` + API_KEY;
+  const link = baseUrl + `/tv/${id}/similar?language=en-US&api_key=` + API_KEY;
 
   useEffect(() => {
     const getTvId = async () => {
       const res = await axios.get(url);
       const data = res.data;
       setTvId(data);
-      // console.log(data);
     };
     getTvId();
   }, [id]);
-
 
   const w500Img = apiConfig.w500Img;
 

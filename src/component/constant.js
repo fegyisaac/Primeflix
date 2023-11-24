@@ -29,9 +29,9 @@ export const navMenu = [
     to: "series",
     name: "Series",
   },
-  {
-    id: 4,
-    to: "advanced_search",
-    name: "Advanced Search",
-  },
+  // {
+  //   id: 4,
+  //   to: "advanced_search",
+  //   name: "Advanced Search",
+  // },
 ];

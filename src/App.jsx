@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-// import router from "./Layout/RootLayout"
 import RootLayout from "./Layout/RootLayout";
 import Home from "./pages/Home/Home";
 import Movies from "./pages/Movies/Movies";
@@ -19,6 +17,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      
       <Route path="movies" element={<Movies />} />
       <Route path="series" element={<Series />} />
       <Route path="advanced_search" element={<AdvSearch />} />

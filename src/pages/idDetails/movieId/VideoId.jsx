@@ -25,7 +25,6 @@ const VideoId = () => {
       const res = await axios.get(url);
       const data = res.data;
       setMovieId(data);
-      // console.log(data);
     };
     getMovieId();
   }, [id]);
@@ -34,7 +33,6 @@ const VideoId = () => {
       const res = await axios.get(link);
       const data = res.data;
       setSimilar(data.results[8]);
-      console.log(data.results[8]);
     };
     getMovieId();
   }, [id]);

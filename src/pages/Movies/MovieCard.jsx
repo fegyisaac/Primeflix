@@ -2,14 +2,14 @@ import apiConfig from "../../component/api/apiConfig";
 import star from '../../img/star.svg'
 import { NavLink } from "react-router-dom";
 
-const Card = ({ movies }) => {
+const Card = ({ movies, key }) => {
   const w500Img = apiConfig.w500Img;
 
   const truncate = (str) => {
     return str.length > 19 ? str.substring(0, 17) + "..." : str;
   };
   return (
-    <div className="bg-blue-500 w-[120px] h-[230px] card-ratio  rounded-xl overflow-hidden">
+    <div key={key} className="bg-blue-500 w-[120px] h-[230px] card-ratio  rounded-xl overflow-hidden">
       <div className="w-full h-[180px] xsm:h-[190px] rounded-xl flex_center ">
         <img
           src={`${w500Img}${movies.poster_path}`}

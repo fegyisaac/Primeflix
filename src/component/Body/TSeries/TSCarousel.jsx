@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import TSCard from "./TSCard";
 import apiConfig from "../../api/apiConfig";
+import Loading from "../../Loading";
 
 const TSCarousel = () => {
   const responsive = {
@@ -40,25 +41,35 @@ const TSCarousel = () => {
   };
 
   const [series, setSeries] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/trending/tv/day?language=en-US&api_key=" + API_KEY;
 
   useEffect(() => {
-    const getSeries = async () => {
-      const res = await axios.get(url);
-      const data = res.data;
-      setSeries(data.results);
-    };
-    getSeries();
+    setIsLoading(true);
+    try {
+      const getSeries = async () => {
+        const res = await axios.get(url);
+        const data = res.data;
+        setSeries(data.results);
+        console.log("Data from TS");
+        setIsLoading(false);
+      };
+      getSeries();
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
-      {series.map((tv) => (
-        <TSCard tv={tv} />
-      ))}
+      {isLoading
+        ? Array(8)
+            .fill(0)
+            .map(() => <Loading />)
+        : series.map((tv) => <TSCard tv={tv} />)}
     </Carousel>
   );
 };

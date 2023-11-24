@@ -4,18 +4,19 @@ import axios from "axios";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import apiConfig from "../../component/api/apiConfig";
 import ReactPaginate from "react-paginate";
-
-
+import Loading from "../../component/Loading";
 
 const baseUrl = apiConfig.baseUrl;
 const API_KEY = apiConfig.API_KEY;
-const discover = "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&api_key=";
+const discover =
+  "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&api_key=";
 const popular = "/movie/popular?language=en-US&page=1&api_key=";
 const topRated = "/movie/top_rated?language=en-US&page=1&api_key=";
 const upcoming = "/movie/upcoming?language=en-US&page=1&api_key=";
 
 const Movies = () => {
   const [menu, setMenu] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const categories = ["All", "Popular", "Top Rated", "Upcoming"];
   const [movies, setMovies] = useState([]);
@@ -41,12 +42,18 @@ const Movies = () => {
   };
 
   useEffect(() => {
-    const getMovies = async () => {
-      const res = await axios.get(url);
-      const data = res.data;
-      setMovies(data.results.slice(0, 16));
-    };
-    getMovies();
+    setIsLoading(true);
+    try {
+      const getMovies = async () => {
+        const res = await axios.get(url);
+        const data = res.data;
+        setMovies(data.results.slice(0, 16));
+        setIsLoading(false);
+      };
+      getMovies();
+    } catch (err) {
+      console.log(err);
+    }
   }, [val]);
 
   const mainRef = useRef(null);
@@ -63,14 +70,6 @@ const Movies = () => {
       setMenu(false);
     }
   };
-  
-  // const [pageNumber, setPageNumber] = useState(0)
-  // const usersPerPage = 16
-  // const pagesVisited = pageNumber * usersPerPage
-
-  // const displayUsers = () => {
-    
-  // }
 
   return (
     <div className="container py-12 px-6">
@@ -79,34 +78,45 @@ const Movies = () => {
           <span>{val}</span> Movies
         </p>
         <p className="flex-1 text-center">1 out of 395 Movies | Primeflix</p>
-        <span onClick={(e) => setMenu(!menu)} className="mr-5 cursor-pointer">
+        <span
+          onClick={(e) => setMenu((prev) => !prev)}
+          className="mr-5 cursor-pointer"
+        >
           <BsThreeDotsVertical className="text-[20px]" />
         </span>
         {menu && (
-          <div ref={mainRef} className="absolute top-0 text-[14px] -right-1 -translate-x-[20%] bg-black p-2 rounded-md">
-            {categories.map((categorie) => (
+          <div
+            ref={mainRef}
+            className="absolute top-0 text-[14px] -right-1 -translate-x-[20%] bg-black p-2 rounded-md"
+          >
+            {categories.map((category) => (
               <p
-                key={categorie}
+                key={category}
                 className="py-[3px] px-2 hover:bg-slate-600 cursor-pointer rounded-sm"
                 onClick={options}
               >
-                {categorie}
+                {category}
               </p>
             ))}
           </div>
         )}
       </div>
 
-      <div className="grid grid-auto-fit-[9rem] gap-y-6">
-        {movies.map((movie) => (
-          <MovieCard movies={movie} />
-        ))}
-      </div>
-
-      <div>
-
-      </div>
-      
+      {isLoading ? (
+        <div className="grid grid-auto-fit-[9rem] gap-y-6">
+          {Array(16)
+            .fill(0)
+            .map(() => {
+              return <Loading />;
+            })}
+        </div>
+      ) : (
+        <div className="grid grid-auto-fit-[9rem] place-items-center gap-y-6">
+          {movies.map((movie) => (
+            <MovieCard movies={movie} key={movie.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

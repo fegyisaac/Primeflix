@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import star from "../../../img/star.svg";
 import apiConfig from "../../api/apiConfig";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const DesktopSearchFeed = ({ selected, searchTerm }) => {
-
+const DesktopSearchFeed = ({ selected, searchTerm, setSearchTerm }) => {
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
   const w500Img = apiConfig.w500Img;
 
   const [search, setSearch] = useState([]);
   const [url, setUrl] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     {
@@ -34,21 +35,32 @@ const DesktopSearchFeed = ({ selected, searchTerm }) => {
           )
         : setUrl("");
     }
-
-    const getSearch = async () => {
-      const res = await axios.get(url);
-      const data = res.data;
-      setSearch(data.results);
-      console.log(data.results.slice(0, 5));
-    };
-    getSearch();
+    try {
+      const getSearch = async () => {
+        const res = await axios.get(url);
+        const data = res.data;
+        setSearch(data.results);
+      };
+      getSearch();
+    } catch (error) {
+      console.log(error);
+    }
   }, [searchTerm]);
 
+  const submitSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm) {
+      navigate(`/search/${searchTerm}`);
+
+      setSearchTerm("");
+    }
+  };
+
   return (
-    <div className="w-[340px] min-h-[280px]  absolute left-1/2 overflow-hidden -translate-x-1/2 bg-red-600 top-[120%] z-10">
-      <div className="fixed top-0 w-full h-[7px] bg-red-600"></div>
-      <div className=" overflow-y-scroll max-h-[280px] scrollbar pt-3 pb-4 px-1">
-        <div className="min-h-[252px]">
+    <div className="w-[340px] min-h-[280px] absolute left-1/2 overflow-hidden -translate-x-1/2 bg-red-600 top-[120%] z-10">
+      <div className="fixed top-0 w-full h-[3px] bg-red-600"></div>
+      <div className=" overflow-y-scroll max-h-[245px] scrollbar pl-1">
+        <div className="min-h-[252px] bg-black">
           {search.map((search) => (
             <div className="min-h-[85px] flex_btw gap-1 p-1 bg-green-400">
               <div className="h-full w-16 mx-auto rounded-md">
@@ -82,7 +94,14 @@ const DesktopSearchFeed = ({ selected, searchTerm }) => {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-0 w-full h-[7px] bg-red-600"></div>
+      <div className="fixed bottom-0 bg-yellow-600 w-[calc(100%-8px)] grid place-items-center">
+        <button
+          onClick={submitSearch}
+          className="my-1 bg-green-600 text-[14px] text-center p-1 rounded-md"
+        >
+          See more Results...
+        </button>
+      </div>
     </div>
   );
 };

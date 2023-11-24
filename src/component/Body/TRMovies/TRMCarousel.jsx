@@ -3,6 +3,7 @@ import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { TRMCard } from "../..";
+import Loading from "../../Loading";
 import apiConfig from "../../api/apiConfig";
 
 const TRMCarousel = () => {
@@ -40,18 +41,22 @@ const TRMCarousel = () => {
   };
 
   const [topRated, setTopRated] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/movie/top_rated?language=en-US&api_key=" + API_KEY;
 
   useEffect(() => {
+    setIsLoading(true);
+
     try {
       const getTopRated = async () => {
         const res = await axios.get(url);
         const data = res.data;
         setTopRated(data.results);
-        console.log("vvvvv");
+        console.log("Data from TRM carr");
+        setIsLoading(false);
       };
       getTopRated();
     } catch (err) {
@@ -59,12 +64,14 @@ const TRMCarousel = () => {
     }
   }, []);
 
-  // /movie/top_rated?language=en-US&
+
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
-      {topRated.map((rated) => (
-        <TRMCard rated={rated} />
-      ))}
+      {isLoading
+        ? Array(8)
+            .fill(0)
+            .map(() => <Loading />)
+        : topRated.map((rated) => <TRMCard rated={rated} />)}
     </Carousel>
   );
 };

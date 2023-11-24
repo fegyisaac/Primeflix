@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import apiConfig from "../../api/apiConfig";
 import { TRSCard } from "../..";
+import Loading from "../../Loading";
 
 const TRSCarousel = () => {
   const responsive = {
@@ -40,27 +41,36 @@ const TRSCarousel = () => {
   };
 
   const [topRated, setTopRated] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const baseUrl = apiConfig.baseUrl;
   const API_KEY = apiConfig.API_KEY;
   const url = baseUrl + "/tv/top_rated?language=en-US&api_key=" + API_KEY;
 
   useEffect(() => {
-    const getRatedTV = async () => {
-      const res = await axios.get(url);
-      const data = res.data;
-      setTopRated(data.results);
-      console.log("yyyyyy");
-    };
-    getRatedTV();
+    setIsLoading(true);
+    try {
+      const getRatedTV = async () => {
+        const res = await axios.get(url);
+        const data = res.data;
+        setTopRated(data.results);
+        console.log("Data from Trs");
+        setIsLoading(false);
+      };
+      getRatedTV();
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
+
 
   return (
     <Carousel responsive={responsive} customTransition="all .5s">
-      {topRated.map((rated) => (
-        // <Card rated={rated} />
-        <TRSCard rated={rated} />
-      ))}
+      {isLoading
+        ? Array(8)
+            .fill(0)
+            .map(() => <Loading />)
+        : topRated.map((rated) => <TRSCard rated={rated} />)}
     </Carousel>
   );
 };

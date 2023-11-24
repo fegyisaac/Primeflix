@@ -8,10 +8,10 @@ const DesktopInput = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("Series");
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   const navigate = useNavigate();
-  const myRef = useRef(null);
-  
+  const optionRef = useRef(null);
+
   const options = ["All", "Movies", "Series"];
 
   const handleSubmit = (e) => {
@@ -21,9 +21,8 @@ const DesktopInput = () => {
 
       setSearchTerm("");
     }
-    console.log(searchTerm);
   };
-  
+
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
 
@@ -33,7 +32,7 @@ const DesktopInput = () => {
   }, []);
 
   const handleClickOutside = (e) => {
-    if (!myRef.current.contains(e.target)) {
+    if (!optionRef.current.contains(e.target)) {
       setIsOpen(false);
     }
   };
@@ -52,19 +51,20 @@ const DesktopInput = () => {
         className="outline-none text-[15px] block w-full leading-6 xmd:w-[320px] lg:w-[360px] border-none rounded-3xl py-[4px] pl-[28px] pr-[79px] text-gray-900 placeholder:text-gray-600"
         placeholder="Search..."
       />
+      {/* option */}
       <div className="absolute right-[3px] top-0 flex_center h-full py-[2px]">
         <div className="relative text-white bg-black flex_center flex-col w-[70px] h-full rounded-3xl">
           <div
             onClick={(e) => {
               e.preventDefault();
-              setIsOpen(!isOpen);
+              setIsOpen((prev) => !prev);
             }}
             className="text-[12px] cursor-pointer transition-all duration-700 z-50 flex_btw items-center h-full w-full px-[8px]"
           >
             <p>{selected}</p>
             {!isOpen ? <BsFillCaretDownFill /> : <BsFillCaretUpFill />}
           </div>
-          <div ref={myRef} className="z-30">
+          <div ref={optionRef} className="z-30">
             {isOpen ? (
               <div className="bg-green-500 top-[110%] absolute z-20 left-1/2 -translate-x-1/2 p-1  text-[15px] rounded-sm">
                 {options.map((option) => (
@@ -85,7 +85,15 @@ const DesktopInput = () => {
         </div>
       </div>
 
-      <DesktopSearchFeed selected={selected} searchTerm={searchTerm} />
+      {searchTerm === "" ? (
+        null
+      ) : (
+        <DesktopSearchFeed
+          selected={selected}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
+      )}
     </form>
   );
 };
